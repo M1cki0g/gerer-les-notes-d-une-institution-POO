@@ -89,7 +89,7 @@ cout<<"nom: "<<nom<<endl;
 cout<<"Nombre de notes: "<<nbr_nt<<endl;
 cout<<"Notes: "<<endl;
 for(int j=0 ; j<nbr_nt ; j++)
-    cout<<" "<<tab_nt[j]<<endl;
+    cout<<tab_nt[j]<<endl;
 
 }
 
@@ -98,7 +98,7 @@ int s=0;
 for(int i=0 ; i<nbr_nt ; i++){
     s += tab_nt[i];
 }
-return s/nbr_nt;
+return s/float(nbr_nt);
 }
 
 bool admis(float r){
@@ -123,17 +123,11 @@ int main()
 {
 cout<<"Creation d'un objet etudiant e1 avec 3 notes"<<endl;
 etudiant e1;
-e1.setmat(1);
 e1.setnom("Yassine");
 e1.set_nbr_nt(3);
-int n = e1.get_nbr_nt();
-float* t = new float[n] ;
-
-for(int i=0 ; i<n ; i++){
-    cout<<"note "<<i<<endl;
-    cin>>t[i];
-}
-    e1.set_tab_nt(t);
+e1.saisir();
+//float* tab = e1.get_tab_nt();
+//e1.set_tab_nt(tab);
 
 cout<<"Affichage de l'etudiant e1"<<endl;
 e1.affichage();
@@ -141,6 +135,33 @@ cout<<"Copie de l'etudiant e1 dans e2"<<endl;
 etudiant e2 = e1;
 cout<<"Affichage de l'etudiant e2"<<endl;
 e2.affichage();
+etudiant e3;
+e3.setnom("Younes");
+e3.set_nbr_nt(2);
+
+cout<<"Creation d'un objet etudiant e1 avec 3 notes"<<endl;
+e3.saisir();
+int m = e3.getmat();
+string n = e3.getnom();
+int nbr_nt = e3.getnbr_nt();
+cout<<"matricule de e3: "<<m<<endl;
+cout<<"nom de e3: "<<n<<endl;
+cout<<"nbr note de e3: "<<nbr_nt<<endl;
+float moy1 = e2.moy();
+float moy2 = e3.moy();
+cout<<"la moy de e3: "<<moy2<<endl;
+bool admis  = e3.admis(moy2);
+if(admis)
+    cout<<"admis"<<endl;
+else
+    cout<<"non admis"<<endl;
+
+
+bool res = e3.comparer(moy1,moy2);
+if(res)
+    cout<<"meme moy"<<endl;
+else
+    cout<<"moy differente"<<endl;
 
 return 0;
 }
